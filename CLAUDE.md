@@ -91,7 +91,7 @@ docs/
   01-reference-system/
     README.md                 categories to cover in the interview
     interviews/               raw notes from each interview session
-    findings/                 one write-up per topic, in our own words
+    findings/                 one write-up per category, in our own words
   02-research/
     README.md                 research questions
     industries/               how other industries do it
