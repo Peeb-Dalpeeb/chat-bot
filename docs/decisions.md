@@ -7,8 +7,11 @@ Newest first. Each entry: what was decided, and why.
 - **Questions are relayed to a "source AI"** that can read the reference
   system's files, not asked of the owner directly. *Why:* that is where the
   details live.
-- **Each answer must name a file or function, or say "not found."** *Why:* an
-  AI can make things up; file references make answers checkable.
+- **Study the architecture only: no code, file names, or function names.**
+  *Why:* the system isn't ours, and the design is what we need to learn.
+- **Each answer is marked "confirmed in the files" or "not sure," or says "not
+  found."** *Why:* an AI can make things up; this keeps answers checkable
+  without exposing the code.
 - **Stop each category on a confirmed teach-back, not a confidence number.**
   *Why:* AI self-rated confidence is unreliable. A summary the source AI checks
   against the files is something we can actually verify.

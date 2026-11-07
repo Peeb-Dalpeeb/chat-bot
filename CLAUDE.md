@@ -62,13 +62,18 @@ Claude is not talking to the reference system directly. The loop is:
 - **One copy-paste block per batch.** The source AI hasn't seen this
   conversation, so each batch must make sense on its own.
 - **Start every batch with these instructions to the source AI:**
-  - For each answer, name the file or function it is based on.
+  - Describe the architecture and approach in plain words. Don't include code,
+    file names, function names, keys, passwords, or internal addresses.
+  - Mark each answer **confirmed in the files** or **general understanding /
+    not sure**.
   - If the files don't show it, say "not found in the files." Don't guess.
-  - Describe how things work in words. Don't paste code, keys, passwords,
-    internal addresses, or settings values that look secret.
-- **Grill it.** Don't accept vague answers. Follow up until the detail is
-  concrete: which model, which setting, which number, what happens when it
-  fails.
+- **Stay at the architecture level.** The goal is to understand the design:
+  what the parts are, what approach each one uses, what kind of tool or model,
+  in what order, and what happens when something fails. Never ask for code or
+  for where in the code something lives.
+- **Grill it within that level.** Don't accept vague answers like "it checks
+  the answer." Follow up until the approach is clear: checks it how, against
+  what, and what happens if the check fails.
 - **One category at a time** from the list in
   `docs/01-reference-system/README.md`. The list says what to find out, not
   what to ask. Think through every question needed to understand the category
@@ -76,9 +81,9 @@ Claude is not talking to the reference system directly. The loop is:
 
 ### Labelling findings
 
-- **Seen in source code:** the source AI named a specific file or function.
+- **Confirmed in the files:** the source AI marked it confirmed.
 - **Observed in testing:** the owner tried it on the running bot.
-- **Said without a file:** the source AI answered but gave no file reference.
+- **Not confirmed:** the source AI marked it general understanding or not sure.
 - **Our guess:** inferred by us, not stated anywhere.
 
 ### When a category is done
@@ -90,8 +95,8 @@ A category is done when all three are true:
    files and correct anything wrong," and the corrections are applied.
 2. **No open questions left.** Anything that can't be answered is recorded as
    "unknown" with the reason. Unknowns are allowed; they don't block progress.
-3. **Key facts are backed up.** The important details are labelled *seen in
-   source code* or *observed in testing*, not just *said without a file*.
+3. **Key facts are backed up.** The important details are labelled *confirmed
+   in the files* or *observed in testing*, not just *not confirmed*.
 
 Give each finished category a confidence label (high, medium, or low) in its
 write-up, and tick it off in the list.
@@ -113,9 +118,10 @@ Save raw questions and answers as you go in
 
 ## Reference system details are confidential
 
-The reference system isn't ours to publish. Describe *how* it works in our own
-words. Never commit its code, and never record secrets, API keys, credentials,
-or internal hostnames, even if they appear in a relayed answer. If source files
+The reference system isn't ours to publish. We study its architecture, not its
+code. Describe *how* it works in our own words. Never ask for or record its
+code, file names, secrets, API keys, credentials, or internal hostnames, even
+if they appear in a relayed answer. If source files
 are ever copied into this repo, they go in `reference-source/`, which is
 git-ignored.
 
