@@ -1,6 +1,6 @@
 # Phase 1: Study the reference system
 
-Goal: learn, in full detail, how an existing working chatbot is built. We do it
+Goal: learn, in full detail, how an existing working chatbot is built, by
 interviewing the owner, who answers using the running bot and its source code
 (kept in `reference-source/`, which is not committed).
 
