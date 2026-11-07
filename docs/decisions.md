@@ -2,6 +2,25 @@
 
 Newest first. Each entry: what was decided, and why.
 
+## 2026-11-07: Trim Phase 1 after an independent review
+
+- **Cut Phase 1 to six core categories**, with the rest optional, and about 5
+  questions per batch. *Why:* 19 categories would mean weeks of relaying, and
+  many teach little about reliable answers with citations.
+- **Add a golden question set**, used from Phase 1 onward. *Why:* testing the
+  live bot is the only evidence that doesn't rely on an AI's description, and
+  the same set later scores our own bot.
+- **Check teach-backs in a fresh source-AI session.** *Why:* the same session
+  tends to agree with its own earlier answers.
+- **Drop the per-category confidence label.** *Why:* the per-finding labels
+  already carry that information.
+- **Remove the `reference-source/` folder.** *Why:* we study the design, not
+  the code, so nothing goes there.
+- **Include the Official Interpretations and track regulation dates.** *Why:*
+  many answers live in the commentary, and rules change.
+- **Not adopted: a hands-on experiment before planning.** *Why:* the owner
+  wants research and planning done before any building.
+
 ## 2026-11-07: Phase 1 interview process
 
 - **Questions are relayed to a "source AI"** that can read the reference

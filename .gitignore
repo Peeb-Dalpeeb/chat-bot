@@ -1,7 +1,3 @@
-# Reference system source code: confidential, never commit
-reference-source/*
-!reference-source/README.md
-
 # Secrets
 .env
 .env.*
