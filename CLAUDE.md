@@ -38,23 +38,25 @@ Update this line when a phase is finished.
 - **Every bot answer cites its section** (for example, "12 CFR 1005.6(b)").
   This is a hard requirement for the final system.
 - **Separate fact from claim.** In Phase 1, label each finding by where it came
-  from: *seen in source code*, *said by the bot*, or *our guess*. A bot
-  describing itself is not proof of how it works.
+  from: *seen in source code*, *observed in testing*, *said by the bot*, or
+  *our guess*. A bot describing itself is not proof of how it works.
 
 ## How the Phase 1 interview works
 
 - Claude asks; the owner answers. Grill the owner. Don't accept vague answers.
   Ask follow-ups until the detail is concrete (which model, which setting,
   which number, what happens when it fails).
-- Work one topic at a time from the checklist in
-  `docs/01-reference-system/README.md`. Ask a few questions per turn, not a
-  wall of them.
+- Work one category at a time from the list in
+  `docs/01-reference-system/README.md`. The list says what to find out, not
+  what to ask: think through every question needed to understand each category
+  fully, and follow new threads as they come up. Ask a few questions per turn,
+  not a wall of them.
 - For each answer, ask where it came from (the source code, the bot itself, or
   the owner's own understanding), so findings can be labelled.
 - When something can't be answered, suggest a question the owner can put to the
   bot, or a place in the source code to look.
 - Save notes as you go in `docs/01-reference-system/interviews/`, and write up
-  each finished topic in `findings/`. Tick the topic off in the checklist.
+  each finished category in `findings/`. Tick it off in the list.
 - **Cite research sources.** In Phase 2, every finding links to where it came
   from.
 - **Write findings down in `docs/`.** Chat history is lost, but the repo is not.
@@ -87,7 +89,7 @@ README.md                     short project overview
 docs/
   decisions.md                dated log of decisions and why
   01-reference-system/
-    README.md                 topics to cover in the study
+    README.md                 categories to cover in the interview
     interviews/               raw notes from each interview session
     findings/                 one write-up per topic, in our own words
   02-research/
