@@ -15,9 +15,10 @@ relevant passages in the documents first, then answer only from those passages.
 We don't skip ahead. Each phase builds on what the previous one wrote down.
 
 1. **Study a reference system** (`docs/01-reference-system/`)
-   Interview a working chatbot the owner has access to, and read its source
-   code, to learn exactly how it was built: retrieval, confidence scoring,
-   answer checks, citations, user feedback, validation, and API calls.
+   Learn exactly how an existing working chatbot was built: retrieval,
+   confidence scoring, answer checks, citations, user feedback, validation, and
+   API calls. **Claude interviews the owner**, who answers using that bot and
+   its source files. See "How the Phase 1 interview works" below.
 2. **Research** (`docs/02-research/`)
    Use research agents to learn how other industries build reliable chatbots
    and what current research says about producing valid, trustworthy answers.
@@ -39,6 +40,21 @@ Update this line when a phase is finished.
 - **Separate fact from claim.** In Phase 1, label each finding by where it came
   from: *seen in source code*, *said by the bot*, or *our guess*. A bot
   describing itself is not proof of how it works.
+
+## How the Phase 1 interview works
+
+- Claude asks; the owner answers. Grill the owner. Don't accept vague answers.
+  Ask follow-ups until the detail is concrete (which model, which setting,
+  which number, what happens when it fails).
+- Work one topic at a time from the checklist in
+  `docs/01-reference-system/README.md`. Ask a few questions per turn, not a
+  wall of them.
+- For each answer, ask where it came from (the source code, the bot itself, or
+  the owner's own understanding), so findings can be labelled.
+- When something can't be answered, suggest a question the owner can put to the
+  bot, or a place in the source code to look.
+- Save notes as you go in `docs/01-reference-system/interviews/`, and write up
+  each finished topic in `findings/`. Tick the topic off in the checklist.
 - **Cite research sources.** In Phase 2, every finding links to where it came
   from.
 - **Write findings down in `docs/`.** Chat history is lost, but the repo is not.
