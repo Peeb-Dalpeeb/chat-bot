@@ -17,8 +17,9 @@ We don't skip ahead. Each phase builds on what the previous one wrote down.
 1. **Study a reference system** (`docs/01-reference-system/`)
    Learn exactly how an existing working chatbot was built: retrieval,
    confidence scoring, answer checks, citations, user feedback, validation, and
-   API calls. **Claude interviews the owner**, who answers using that bot and
-   its source files. See "How the Phase 1 interview works" below.
+   API calls. Claude writes the questions, and the owner relays them to another
+   AI that can read that system's files. See "How the Phase 1 interview works"
+   below.
 2. **Research** (`docs/02-research/`)
    Use research agents to learn how other industries build reliable chatbots
    and what current research says about producing valid, trustworthy answers.
@@ -38,37 +39,85 @@ Update this line when a phase is finished.
 - **Every bot answer cites its section** (for example, "12 CFR 1005.6(b)").
   This is a hard requirement for the final system.
 - **Separate fact from claim.** In Phase 1, label each finding by where it came
-  from: *seen in source code*, *observed in testing*, *said by the bot*, or
-  *our guess*. A bot describing itself is not proof of how it works.
-
-## How the Phase 1 interview works
-
-- Claude asks; the owner answers. Grill the owner. Don't accept vague answers.
-  Ask follow-ups until the detail is concrete (which model, which setting,
-  which number, what happens when it fails).
-- Work one category at a time from the list in
-  `docs/01-reference-system/README.md`. The list says what to find out, not
-  what to ask: think through every question needed to understand each category
-  fully, and follow new threads as they come up. Ask a few questions per turn,
-  not a wall of them.
-- For each answer, ask where it came from (the source code, the bot itself, or
-  the owner's own understanding), so findings can be labelled.
-- When something can't be answered, suggest a question the owner can put to the
-  bot, or a place in the source code to look.
-- Save notes as you go in `docs/01-reference-system/interviews/`, and write up
-  each finished category in `findings/`. Tick it off in the list.
+  from (labels are listed below). An AI describing a system is not proof of how
+  it works.
 - **Cite research sources.** In Phase 2, every finding links to where it came
   from.
 - **Write findings down in `docs/`.** Chat history is lost, but the repo is not.
 - **Record decisions** in `docs/decisions.md`, with the date and the reason.
 
-## Reference system source code is confidential
+## How the Phase 1 interview works
 
-The reference system's source files go in `reference-source/`, and that folder
-is git-ignored. Never commit, copy, or quote those files into any other part of
-the repo. Never record secrets, API keys, credentials, or internal hostnames
-from it. Describe *how* it works in our own words in
+### The setup
+
+Claude is not talking to the reference system directly. The loop is:
+
+1. Claude writes a batch of questions.
+2. The owner pastes them into another AI that has access to the reference
+   system's files (the "source AI").
+3. The owner pastes the source AI's answers back here.
+
+### Writing each batch
+
+- **One copy-paste block per batch.** The source AI hasn't seen this
+  conversation, so each batch must make sense on its own.
+- **Start every batch with these instructions to the source AI:**
+  - For each answer, name the file or function it is based on.
+  - If the files don't show it, say "not found in the files." Don't guess.
+  - Describe how things work in words. Don't paste code, keys, passwords,
+    internal addresses, or settings values that look secret.
+- **Grill it.** Don't accept vague answers. Follow up until the detail is
+  concrete: which model, which setting, which number, what happens when it
+  fails.
+- **One category at a time** from the list in
+  `docs/01-reference-system/README.md`. The list says what to find out, not
+  what to ask. Think through every question needed to understand the category
+  fully, and follow new threads as they come up.
+
+### Labelling findings
+
+- **Seen in source code:** the source AI named a specific file or function.
+- **Observed in testing:** the owner tried it on the running bot.
+- **Said without a file:** the source AI answered but gave no file reference.
+- **Our guess:** inferred by us, not stated anywhere.
+
+### When a category is done
+
+A category is done when all three are true:
+
+1. **Teach-back confirmed.** Claude writes a plain-English summary of the
+   category. The owner pastes it to the source AI with "Check this against the
+   files and correct anything wrong," and the corrections are applied.
+2. **No open questions left.** Anything that can't be answered is recorded as
+   "unknown" with the reason. Unknowns are allowed; they don't block progress.
+3. **Key facts are backed up.** The important details are labelled *seen in
+   source code* or *observed in testing*, not just *said without a file*.
+
+Give each finished category a confidence label (high, medium, or low) in its
+write-up, and tick it off in the list.
+
+### When the whole interview is done
+
+- Every category is done or marked "can't find out," **and**
+- Claude writes a step-by-step walkthrough of one question's full journey, from
+  "user hits send" to "answer with citations appears," and the source AI
+  confirms it is accurate.
+
+The owner can stop, skip, or reorder categories at any time.
+
+### Saving work
+
+Save raw questions and answers as you go in
+`docs/01-reference-system/interviews/`, and write up each finished category in
 `docs/01-reference-system/findings/`.
+
+## Reference system details are confidential
+
+The reference system isn't ours to publish. Describe *how* it works in our own
+words. Never commit its code, and never record secrets, API keys, credentials,
+or internal hostnames, even if they appear in a relayed answer. If source files
+are ever copied into this repo, they go in `reference-source/`, which is
+git-ignored.
 
 ## Document sources
 
@@ -90,7 +139,7 @@ docs/
   decisions.md                dated log of decisions and why
   01-reference-system/
     README.md                 categories to cover in the interview
-    interviews/               raw notes from each interview session
+    interviews/               raw questions and answers from each session
     findings/                 one write-up per category, in our own words
   02-research/
     README.md                 research questions
@@ -98,5 +147,5 @@ docs/
     literature/               what research papers and guides say
   03-plan/
     README.md                 our design, written after Phases 1 and 2
-reference-source/             reference system code (git-ignored, local only)
+reference-source/             for copied source files, if ever (git-ignored)
 ```

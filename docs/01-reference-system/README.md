@@ -1,15 +1,16 @@
 # Phase 1: Study the reference system
 
-Goal: learn, in full detail, how an existing working chatbot is built, by
-interviewing the owner, who answers using the running bot and its source code
-(kept in `reference-source/`, which is not committed).
+Goal: learn, in full detail, how an existing working chatbot is built. Claude
+writes questions, and the owner relays them to another AI that can read the
+system's files. See "How the Phase 1 interview works" in `CLAUDE.md` for the
+process, the labels, and when to stop.
 
 ## Categories to cover
 
 These are areas to explore, not a script. Within each one, think of the
 questions needed to understand it fully, and keep asking until the details are
 concrete. Add new categories if something important turns up. Tick each one off
-when its write-up is saved in `findings/`.
+when it meets the "done" rule in `CLAUDE.md`.
 
 - [ ] **Purpose and users:** find out what the bot is for, who uses it, and
       what "working well" means to the organization.
@@ -53,9 +54,8 @@ when its write-up is saved in `findings/`.
 
 ## How to record
 
-- `interviews/`: raw notes from each session, named by date and category
-  (for example `2026-11-08-rag-methods.md`).
-- `findings/`: one clean write-up per category, in our own words.
-- Label every finding by its source: **seen in source code**, **observed in
-  testing**, **said by the bot**, or **our guess**.
+- `interviews/`: raw questions and answers from each session, named by date
+  and category (for example `2026-11-08-rag-methods.md`).
+- `findings/`: one clean write-up per category, in our own words, with a
+  confidence label and source labels on each finding.
 - No secrets, keys, credentials, or copied code.
