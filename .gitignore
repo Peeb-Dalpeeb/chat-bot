@@ -1,0 +1,13 @@
+# Reference system source code: confidential, never commit
+reference-source/*
+!reference-source/README.md
+
+# Secrets
+.env
+.env.*
+
+# OS and editor clutter
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
