@@ -9,10 +9,8 @@ Newest first. Each entry: what was decided, and why.
   to guess.
 - **Every answer must cite its section.** *Why:* reliability and trust; users
   of regulation bots need to check the source.
-- **Use eCFR Title 12 as the document source; don't use BankersOnline.**
-  *Why:* eCFR is free, official federal text with an API and clean structure.
-  BankersOnline returned "Payment Required", its robots.txt blocks AI tools, and
-  its content is copyrighted.
+- **Use eCFR Title 12 as the document source.** *Why:* it is free, official
+  federal text with an API and clean structure.
 - **Start with Reg B, E, Z, and DD,** then add public PDFs with charts later.
   *Why:* get a small set reliable before scaling up.
 - **Keep reference system source code out of git.** *Why:* it isn't ours to

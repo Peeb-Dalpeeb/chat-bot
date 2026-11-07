@@ -62,8 +62,6 @@ from it. Describe *how* it works in our own words in
 - **Start with:** Reg B (12 CFR 1002), Reg E (1005), Reg Z (1026), Reg DD (1030).
 - **Later:** public PDFs with charts and tables (for example, the FFIEC BSA/AML
   Examination Manual and CFPB exam procedures).
-- **Don't use:** BankersOnline. It is paywalled, its robots.txt blocks AI tools,
-  and its commentary is copyrighted.
 
 ## Folder map
 
